@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const PostSchema = new mongoose.Schema({
     company: String,
     city: String,
-    categorys: [String],
+    category: [String],
     thumbnail: String
 }, {
     toJSON: {
