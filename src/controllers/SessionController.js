@@ -6,7 +6,6 @@ module.exports = {
     async index(req, res) {
         // procurar todo o objeto de usuarios
         const data = await User.find({})
-
         return res.json(data)
     },
 
