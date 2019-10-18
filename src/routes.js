@@ -2,13 +2,14 @@ const express = require("express");
 const multer = require("multer");
 
 const SessionController = require("./controllers/SessionController");
+const CompanyController = require("./controllers/CompanyController");
 const PostController = require("./controllers/PostController");
 const AuthController = require("./controllers/AuthController");
-const ProjectController = require('./controllers/ProjectController')
+const ProjectController = require("./controllers/ProjectController");
 
 const uploadConfig = require("./config/upload");
 const upload = multer(uploadConfig);
-const authMiddleware = require('./middlewares/auth')
+const authMiddleware = require("./middlewares/auth");
 
 const routes = express.Router();
 
@@ -18,18 +19,23 @@ const routes = express.Router();
 //req.params = Acessar route params (para edição, delete)
 //req.body = Acessar corpo da requisição (para criação, edição)
 
-routes.post("/sessions", SessionController.store);
-routes.get("/sessions", SessionController.show);
-routes.put("/sessions", SessionController.update);
-routes.delete("/sessions", SessionController.destroy);
+routes.post("/", SessionController.store);
+routes.get("/show", SessionController.show);
+routes.put("/update", SessionController.update);
+routes.delete("/destroy", SessionController.destroy);
+
+routes.post("/company", CompanyController.store);
+routes.get("/company/show", CompanyController.show);
+routes.get("/company/index", CompanyController.index);
 
 routes.post("/posts", upload.single("thumbnail"), PostController.store);
-routes.get("/posts/:category", PostController.index);
-routes.put("/posts", PostController.update);
-routes.delete("/posts/delete", PostController.destroy);
+routes.get("/posts", PostController.show);
+routes.get("/posts/index", PostController.index);
+routes.put("/posts/update", PostController.update);
+routes.delete("/posts/destroy", PostController.destroy);
 
 routes.post("/authenticate", AuthController.store);
 
-routes.get('/home', authMiddleware, ProjectController.show)
+routes.get("/home", authMiddleware, ProjectController.show);
 
-module.exports = routes
+module.exports = routes;

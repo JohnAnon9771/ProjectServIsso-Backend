@@ -2,18 +2,24 @@ const Post = require("../models/Post");
 
 module.exports = {
   async index(req, res) {
-    const { category } = req.params;
+    const posts = await Post.find({});
+    return res.json(posts);
+  },
+
+  async show(req, res) {
+    const { category } = req.query;
     const posts = await Post.find({ category: category });
     return res.json(posts);
   },
 
   async store(req, res) {
-    const { company, city, category } = req.body;
+    const { company_id } = req.headers
+    const { city, category } = req.body;
     const { filename } = req.file;
 
     const post = await Post.create({
+      company: company_id,
       thumbnail: filename,
-      company,
       city,
       category: category.split(",").map(category => category.trim())
     });
