@@ -4,7 +4,7 @@ const authConfig = require("../config/auth.json");
 //index, show, store, update, destroy
 
 module.exports = {
-  async show(req, res) {
+  async index(req, res) {
     //Apenas para desenvolvimento
     // procurar todo o objeto de usuarios
     //const { user_id } = req.headers

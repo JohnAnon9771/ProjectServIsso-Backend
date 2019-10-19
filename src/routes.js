@@ -2,7 +2,6 @@ const express = require("express");
 const multer = require("multer");
 
 const SessionController = require("./controllers/SessionController");
-const CompanyController = require("./controllers/CompanyController");
 const PostController = require("./controllers/PostController");
 const AuthController = require("./controllers/AuthController");
 const ProjectController = require("./controllers/ProjectController");
@@ -20,13 +19,9 @@ const routes = express.Router();
 //req.body = Acessar corpo da requisição (para criação, edição)
 
 routes.post("/", SessionController.store);
-routes.get("/show", SessionController.show);
+routes.get("/index", SessionController.index);
 routes.put("/update", SessionController.update);
 routes.delete("/destroy", SessionController.destroy);
-
-routes.post("/company", CompanyController.store);
-routes.get("/company/show", CompanyController.show);
-routes.get("/company/index", CompanyController.index);
 
 routes.post("/posts", upload.single("thumbnail"), PostController.store);
 routes.get("/posts", PostController.show);

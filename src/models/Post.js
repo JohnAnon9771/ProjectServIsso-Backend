@@ -2,13 +2,11 @@ const mongoose = require("mongoose");
 
 const PostSchema = new mongoose.Schema(
   {
+    company: String,
     city: String,
+    description: String,
     category: [String],
     thumbnail: String,
-    company: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Company"
-    }
   },
   {
     toJSON: {

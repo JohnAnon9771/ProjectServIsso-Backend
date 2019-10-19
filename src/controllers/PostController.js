@@ -13,15 +13,15 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { company_id } = req.headers
-    const { city, category } = req.body;
+    const { company, city, description, category } = req.body;
     const { filename } = req.file;
 
     const post = await Post.create({
-      company: company_id,
-      thumbnail: filename,
+      company,
       city,
-      category: category.split(",").map(category => category.trim())
+      description,
+      category: category.split(",").map(category => category.trim()),
+      thumbnail: filename,
     });
     return res.json(post);
   },
@@ -50,9 +50,8 @@ module.exports = {
     if (!post_id) {
       return res.status(400).json("Post does not exist so it can be deleted");
     } else {
-      const data = await Post.findById(post_id);
-      const posts = await data.deleteOne({});
-      return res.json(posts);
+      const response = await Post.findByIdAndDelete(post_id)
+      return res.json(response);
     }
   }
 };
