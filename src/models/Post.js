@@ -7,6 +7,10 @@ const PostSchema = new mongoose.Schema(
     description: String,
     category: [String],
     thumbnail: String,
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
   },
   {
     toJSON: {

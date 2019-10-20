@@ -21,7 +21,7 @@ module.exports = {
       city,
       description,
       category: category.split(",").map(category => category.trim()),
-      thumbnail: filename,
+      thumbnail: filename
     });
     return res.json(post);
   },
@@ -50,7 +50,7 @@ module.exports = {
     if (!post_id) {
       return res.status(400).json("Post does not exist so it can be deleted");
     } else {
-      const response = await Post.findByIdAndDelete(post_id)
+      const response = await Post.findByIdAndDelete(post_id);
       return res.json(response);
     }
   }
