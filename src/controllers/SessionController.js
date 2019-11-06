@@ -16,11 +16,18 @@ module.exports = {
   async store(req, res) {
     // recuperar os campos
     const { name, email, pwd, profession } = req.body;
+    const { filename } = req.file;
     //procurar se os campos existem
     let user = await User.findOne({ email });
     //se não existir, crie
     if (!user) {
-      user = await User.create({ name, email, pwd, profession });
+      user = await User.create({
+        name,
+        email,
+        pwd,
+        photo: filename,
+        profession
+      });
     } else {
       return res.status(400).json({ error: "Email already exists" });
     }

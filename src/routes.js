@@ -18,7 +18,7 @@ const routes = express.Router();
 //req.params = Acessar route params (para edição, delete)
 //req.body = Acessar corpo da requisição (para criação, edição)
 
-routes.post("/", SessionController.store);
+routes.post("/", upload.single("photo"), SessionController.store);
 routes.get("/index", SessionController.index);
 routes.put("/update", SessionController.update);
 routes.delete("/destroy", SessionController.destroy);
