@@ -20,7 +20,7 @@ const PostSchema = new mongoose.Schema(
 );
 
 PostSchema.virtual("thumbnail_url").get(function() {
-  return `http://192.168.100.8:3333/files/${this.thumbnail}`;
+  return `https://servisso-api.herokuapp.com/files/${this.thumbnail}`;
 });
 
 module.exports = mongoose.model("Post", PostSchema);

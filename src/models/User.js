@@ -20,7 +20,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.virtual("photo_url").get(function() {
-  return `http://192.168.100.8:3333/files/${this.photo}`;
+  return `https://servisso-api.herokuapp.com/files/${this.photo}`;
 });
 
 module.exports = mongoose.model("User", UserSchema);
