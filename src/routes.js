@@ -20,12 +20,13 @@ const routes = express.Router();
 
 routes.post("/", upload.single("photo"), SessionController.store);
 routes.get("/index", SessionController.index);
+routes.get("/show/:id", SessionController.show);
 routes.put("/update", SessionController.update);
 routes.delete("/destroy", SessionController.destroy);
 
 routes.post("/posts", upload.single("thumbnail"), PostController.store);
-routes.get("/posts", PostController.show);
 routes.get("/posts/index", PostController.index);
+routes.get("/posts/:id", PostController.show);
 routes.put("/posts/update", PostController.update);
 routes.delete("/posts/destroy", PostController.destroy);
 

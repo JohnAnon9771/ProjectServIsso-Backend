@@ -12,10 +12,14 @@ module.exports = {
     const data = await User.find({}).select("+pwd");
     return res.json(data);
   },
-
+  async show(req, res) {
+    const { id } = req.params;
+    const response = await User.findById(id);
+    return res.json(response);
+  },
   async store(req, res) {
     // recuperar os campos
-    const { name, email, pwd, profession } = req.body;
+    const { name, email, pwd, profession, description, city } = req.body;
     const { filename } = req.file;
     //procurar se os campos existem
     let user = await User.findOne({ email });
@@ -26,7 +30,9 @@ module.exports = {
         email,
         pwd,
         photo: filename,
-        profession
+        profession,
+        description,
+        city
       });
     } else {
       return res.status(400).json({ error: "Email already exists" });

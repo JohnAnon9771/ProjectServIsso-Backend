@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema(
       select: false
     },
     photo: String,
-    profession: String
+    profession: String,
+    description: String,
+    city: String
   },
   {
     toJSON: {
@@ -18,7 +20,7 @@ const UserSchema = new mongoose.Schema(
 );
 
 UserSchema.virtual("photo_url").get(function() {
-  return `http://localhost:3333/files/${this.photo}`;
+  return `http://192.168.100.8:3333/files/${this.photo}`;
 });
 
 module.exports = mongoose.model("User", UserSchema);

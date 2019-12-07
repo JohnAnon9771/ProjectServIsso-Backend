@@ -20,7 +20,7 @@ const PostSchema = new mongoose.Schema(
 );
 
 PostSchema.virtual("thumbnail_url").get(function() {
-  return `http://localhost:3333/files/${this.thumbnail}`;
+  return `http://192.168.100.8:3333/files/${this.thumbnail}`;
 });
 
 module.exports = mongoose.model("Post", PostSchema);

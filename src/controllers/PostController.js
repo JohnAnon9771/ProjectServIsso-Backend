@@ -7,8 +7,8 @@ module.exports = {
   },
 
   async show(req, res) {
-    const { category } = req.query;
-    const posts = await Post.find({ category: category });
+    const { id } = req.params;
+    const posts = await Post.findById(id);
     return res.json(posts);
   },
 
