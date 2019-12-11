@@ -18,8 +18,8 @@ const routes = express.Router();
 // req.query  = Acessar query params (para filtros)
 // req.params = Acessar route params (para edição, delete)
 // req.body = Acessar corpo da requisição (para criação, edição)
-
-routes.post('/', upload.single('photo'), SessionController.store);
+// upload.single('photo'),
+routes.post('/', SessionController.store);
 routes.get('/index', SessionController.index);
 routes.get('/index/:profession', SessionController.indexUserFiltred);
 routes.get('/show/:id', SessionController.show);

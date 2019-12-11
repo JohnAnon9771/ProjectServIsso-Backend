@@ -34,7 +34,8 @@ module.exports = {
 			city
 		} = req.body;
 
-		const { filename } = req.file;
+		// const { filename } = req.file;
+		// console.log(filename);
 		// procurar se os campos existem
 		let user = await User.findOne({ email });
 		// se não existir, crie
@@ -43,7 +44,7 @@ module.exports = {
 				name,
 				email,
 				pwd,
-				photo: filename,
+				// photo: filename,
 				profession,
 				description,
 				phoneNumber,
