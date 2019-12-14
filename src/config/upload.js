@@ -9,13 +9,10 @@ module.exports = {
 			cb(null, path.resolve(__dirname, '..', '..', 'uploads'));
 		},
 		filename: (req, file, cb) => {
-			crypto.randomBytes(16, (err, hash) => {
-				if (err) cb(err);
+			const ext = path.extname(file.originalname);
+			const name = path.basename(file.originalname, ext);
 
-				const filename = `${hash.toString('hex')}-${file.originalname}`;
-
-				cb(null, filename);
-			});
+			cb(null, `${name}-${Date.now()}${ext}`);
 		}
 	}),
 	limits: {
